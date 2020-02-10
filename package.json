@@ -1,0 +1,45 @@
+{
+  "name": "sourcebit-transform-assets",
+  "version": "0.1.0",
+  "description": "A Sourcebit plugin for downloading assets",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run format",
+    "format": "prettier --write \"./**/*.{js,jsx,md,html}\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stackbithq/sourcebit-transform-assets.git"
+  },
+  "keywords": [
+    "sourcebit",
+    "headless",
+    "assets",
+    "images"
+  ],
+  "author": "Stackbit",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/stackbithq/sourcebit-transform-assets/issues"
+  },
+  "homepage": "https://github.com/stackbithq/sourcebit-transform-assets#readme",
+  "devDependencies": {
+    "husky": "^4.2.0",
+    "lint-staged": "^9.5.0",
+    "prettier": "^1.19.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx,md,html}": [
+      "npm run format",
+      "git add"
+    ]
+  },
+  "dependencies": {
+    "mkdirp": "^1.0.3"
+  }
+}
