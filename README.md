@@ -75,7 +75,7 @@ module.exports = {
 };
 ```
 
-\_`assetPath` and `publicUrl` as functions
+_`assetPath` and `publicUrl` as functions_
 
 ```js
 module.exports = {
