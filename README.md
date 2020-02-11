@@ -31,8 +31,8 @@ The plugin accepts the following configuration parameters. They can be supplied 
 
 | Property    | Type            | Visibility | Default value | Env variable | Parameter | Description                                                                                       |
 | ----------- | --------------- | ---------- | ------------- | ------------ | --------- | ------------------------------------------------------------------------------------------------- |
-| `assetPath` | String/Function | Public     |               |              |           | A function that determines the full path for each asset detected (see [`assetPath`](#assetpath)). |
-| `publicUrl` | String/Function | Public     |               |              |           | A function that determines the public URL for each asset (see [`publicUrl`](#publicUrl)).         |
+| `assetPath` | String/Function | Public     | `assets`      |              |           | A function that determines the full path for each asset detected (see [`assetPath`](#assetpath)). |
+| `publicUrl` | String/Function | Public     | `/assets`     |              |           | A function that determines the public URL for each asset (see [`publicUrl`](#publicUrl)).         |
 
 ### `assetPath`
 
