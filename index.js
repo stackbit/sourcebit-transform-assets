@@ -115,7 +115,10 @@ return [
 ].join("/");
   `;
   const publicUrlFunctionBody = `
-return '/' + assetPath;
+return [
+  "${answers.publicUrl}",
+  [asset.__metadata.id, asset.fileName].join("-")
+].join("/");
   `;
 
   return {
