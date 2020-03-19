@@ -1,6 +1,6 @@
 {
   "name": "sourcebit-transform-assets",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "A Sourcebit plugin for downloading assets",
   "main": "index.js",
   "scripts": {

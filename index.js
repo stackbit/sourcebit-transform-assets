@@ -142,11 +142,11 @@ module.exports.getSetup = ({ inquirer }) => {
         "assets",
         "images",
         new inquirer.Separator(),
-        { name: "Other", value: null }
+        { name: "Other", value: undefined }
       ]
     },
     {
-      when: ({ assetPath }) => assetPath === null,
+      when: ({ assetPath }) => assetPath === undefined,
       type: "input",
       name: "assetPath",
       message: "Type a location for the downloaded assets"
