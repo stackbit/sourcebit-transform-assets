@@ -43,7 +43,7 @@ If `assetPath` is a function, it will be invoked for each asset detected with tw
 - `entry` (Object): The entry in which the asset was detected
 - `asset` (Object): The normalized asset object
 
-Its return value will be used as the path for the asset.
+Its return value will be used as the path for the asset. If its return empty string then the asset is skipped from donwload.
 
 ### `publicUrl`
 
@@ -55,7 +55,7 @@ If `publicUrl` is a function, it will be invoked for each asset detected with tw
 - `asset` (Object): The normalized asset object
 - `assetPath` (String): The local path where the asset has been saved
 
-Its return value will replace the original URL of the asset in any objects.
+Its return value will replace the original URL of the asset in any objects. If its return empty string then the asset is skipped from donwload.
 
 ### 👀 Example configuration
 
