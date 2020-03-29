@@ -37,7 +37,11 @@ module.exports.transform = async ({ data, debug, log, options }) => {
         ? options.publicUrl(null, entry, assetPath)
         : options.publicUrl;
 
-    result.set(regExp, { assetPath, publicUrl });
+
+    if (assetPath && publicUrl) {
+      debug("Found asset %s, %s", assetPath, publicUrl);
+      result.set(regExp, { assetPath, publicUrl });
+    }
 
     return result;
   }, new Map());
@@ -62,8 +66,10 @@ module.exports.transform = async ({ data, debug, log, options }) => {
             ? options.publicUrl(entry, value, assetPath)
             : options.publicUrl;
 
-        filesToDownload[value.url] = path.join(process.cwd(), assetPath);
-        replacedFields[fieldName] = publicUrl;
+        if (assetPath && publicUrl) {
+          filesToDownload[value.url] = path.join(process.cwd(), assetPath);
+          replacedFields[fieldName] = publicUrl;
+        }
       } else if (typeof entry[fieldName] === "string") {
         assets.forEach(({ assetPath, publicUrl }, expression) => {
           let isMatch = false;
