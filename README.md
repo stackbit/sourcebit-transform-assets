@@ -24,10 +24,10 @@ npm install sourcebit-transform-assets --save
 
 The plugin accepts the following configuration parameters. They can be supplied in any of the following ways:
 
-- In the `options` object of the plugin configuration block inside `sourcebit.js`, with the value of the _Property_ column as a key;
-- As an environment variable named after the _Env variable_ column, when running the `sourcebit fetch` command;
-- As part of a `.env` file, with the value of the _Env variable_ column separated by the value with an equals sign (e.g. `MY_VARIABLE=my-value`);
-- As a CLI parameter, when running the `sourcebit fetch` command, using the value of the _Parameter_ column as the name of the parameter (e.g. `sourcebit fetch --my-parameter`).
+-   In the `options` object of the plugin configuration block inside `sourcebit.js`, with the value of the _Property_ column as a key;
+-   As an environment variable named after the _Env variable_ column, when running the `sourcebit fetch` command;
+-   As part of a `.env` file, with the value of the _Env variable_ column separated by the value with an equals sign (e.g. `MY_VARIABLE=my-value`);
+-   As a CLI parameter, when running the `sourcebit fetch` command, using the value of the _Parameter_ column as the name of the parameter (e.g. `sourcebit fetch --my-parameter`).
 
 | Property    | Type            | Visibility | Default value | Env variable | Parameter | Description                                                                                       |
 | ----------- | --------------- | ---------- | ------------- | ------------ | --------- | ------------------------------------------------------------------------------------------------- |
@@ -40,8 +40,8 @@ If `assetPath` is defined as a string, its value will be used as the path for th
 
 If `assetPath` is a function, it will be invoked for each asset detected with two parameters:
 
-- `entry` (Object): The entry in which the asset was detected
-- `asset` (Object): The normalized asset object
+-   `entry` (Object): The entry in which the asset was detected
+-   `asset` (Object): The normalized asset object
 
 Its return value will be used as the path for the asset.
 
@@ -51,9 +51,9 @@ If `publicUrl` is defined as a string, its value will replace the original URL o
 
 If `publicUrl` is a function, it will be invoked for each asset detected with two parameters:
 
-- `entry` (Object): The entry in which the asset was detected
-- `asset` (Object): The normalized asset object
-- `assetPath` (String): The local path where the asset has been saved
+-   `entry` (Object): The entry in which the asset was detected
+-   `asset` (Object): The normalized asset object
+-   `assetPath` (String): The local path where the asset has been saved
 
 Its return value will replace the original URL of the asset in any objects.
 
@@ -63,15 +63,15 @@ _`assetPath` and `publicUrl` as strings_
 
 ```js
 module.exports = {
-  plugins: [
-    {
-      module: require("sourcebit-transform-assets"),
-      options: {
-        assetPath: "assets",
-        publicUrl: "/assets"
-      }
-    }
-  ]
+    plugins: [
+        {
+            module: require('sourcebit-transform-assets'),
+            options: {
+                assetPath: 'assets',
+                publicUrl: '/assets'
+            }
+        }
+    ]
 };
 ```
 
@@ -79,19 +79,19 @@ _`assetPath` and `publicUrl` as functions_
 
 ```js
 module.exports = {
-  plugins: [
-    {
-      module: require("sourcebit-transform-assets"),
-      options: {
-        assetPath: function(entry, asset) {
-          return `my-assets/${entry.someField}-${asset.fileName}`;
-        },
-        publicUrl: function(entry, asset, assetPath) {
-          return `https://something.example.com/public/${assetPath}`;
+    plugins: [
+        {
+            module: require('sourcebit-transform-assets'),
+            options: {
+                assetPath: function(entry, asset) {
+                    return `my-assets/${entry.someField}-${asset.fileName}`;
+                },
+                publicUrl: function(entry, asset, assetPath) {
+                    return `https://something.example.com/public/${assetPath}`;
+                }
+            }
         }
-      }
-    }
-  ]
+    ]
 };
 ```
 
@@ -103,7 +103,7 @@ This plugin offers an interactive setup process via the `npx create-sourcebit` c
 
 This plugin expects the following data buckets to exist:
 
-- `models`: An array of content models
+-   `models`: An array of content models
 
 ## 📤 Output
 
