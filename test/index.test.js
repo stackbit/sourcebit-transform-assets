@@ -42,12 +42,14 @@ describe('`transform()`', () => {
                         parent: {
                             child: 'https://cdn.sanity.io/images/kz6i252u/production/54944af18882e795452e43957aa43e004e4f8cfc-803x803.png'
                         },
-                        this: {
-                            one: {
-                                is: {
-                                    too: {
-                                        deep:
-                                            'https://cdn.sanity.io/images/kz6i252u/production/54944af18882e795452e43957aa43e004e4f8cfc-803x803.png'
+                        too: {
+                            deep: {
+                                for: {
+                                    me: {
+                                        to: {
+                                            go:
+                                                'https://cdn.sanity.io/images/kz6i252u/production/54944af18882e795452e43957aa43e004e4f8cfc-803x803.png'
+                                        }
                                     }
                                 }
                             }
@@ -88,6 +90,6 @@ describe('`transform()`', () => {
         expect(objects[0].imageAsAssetObject).toBe('/assets/avatar.png');
         expect(objects[0].imageAsString).toBe('/assets/avatar.png');
         expect(objects[0].imageInNestedObject.parent.child).toBe('/assets/avatar.png');
-        expect(objects[0].imageInNestedObject.this.one.is.too.deep).not.toBe('/assets/avatar.png');
+        expect(objects[0].imageInNestedObject.too.deep.for.me.to.go).not.toBe('/assets/avatar.png');
     });
 });
