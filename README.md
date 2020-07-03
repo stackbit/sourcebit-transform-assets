@@ -29,10 +29,11 @@ The plugin accepts the following configuration parameters. They can be supplied 
 -   As part of a `.env` file, with the value of the _Env variable_ column separated by the value with an equals sign (e.g. `MY_VARIABLE=my-value`);
 -   As a CLI parameter, when running the `sourcebit fetch` command, using the value of the _Parameter_ column as the name of the parameter (e.g. `sourcebit fetch --my-parameter`).
 
-| Property    | Type            | Visibility | Default value | Env variable | Parameter | Description                                                                                       |
-| ----------- | --------------- | ---------- | ------------- | ------------ | --------- | ------------------------------------------------------------------------------------------------- |
-| `assetPath` | String/Function | Public     | `assets`      |              |           | A function that determines the full path for each asset detected (see [`assetPath`](#assetpath)). |
-| `publicUrl` | String/Function | Public     | `/assets`     |              |           | A function that determines the public URL for each asset (see [`publicUrl`](#publicUrl)).         |
+| Property             | Type            | Visibility | Default value | Env variable | Parameter | Description                                                                                       |
+| -------------------- | --------------- | ---------- | ------------- | ------------ | --------- | ------------------------------------------------------------------------------------------------- |
+| `assetPath`          | String/Function | Public     | `assets`      |              |           | A function that determines the full path for each asset detected (see [`assetPath`](#assetpath)). |
+| `maximumSearchDepth` | Number          | Public     | `5`           |              |           | When recursively finding asset URLs in nested object, the plugin will stop at this depth.         |
+| `publicUrl`          | String/Function | Public     | `/assets`     |              |           | A function that determines the public URL for each asset (see [`publicUrl`](#publicUrl)).         |
 
 ### `assetPath`
 
