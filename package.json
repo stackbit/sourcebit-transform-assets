@@ -1,47 +1,50 @@
 {
-  "name": "sourcebit-transform-assets",
-  "version": "0.2.2",
-  "description": "A Sourcebit plugin for downloading assets",
-  "main": "index.js",
-  "scripts": {
-    "test": "npm run format",
-    "format": "prettier --write \"./**/*.{js,jsx,md,html}\""
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/stackbithq/sourcebit-transform-assets.git"
-  },
-  "keywords": [
-    "sourcebit",
-    "headless",
-    "assets",
-    "images"
-  ],
-  "author": "Stackbit",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/stackbithq/sourcebit-transform-assets/issues"
-  },
-  "homepage": "https://github.com/stackbithq/sourcebit-transform-assets#readme",
-  "devDependencies": {
-    "@stackbit/prettier-config": "^1.0.0",
-    "husky": "^4.2.0",
-    "lint-staged": "^9.5.0",
-    "prettier": "^1.19.1"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.{js,jsx,md,html}": [
-      "npm run format",
-      "git add"
-    ]
-  },
-  "dependencies": {
-    "mkdirp": "^1.0.3"
-  },
-  "prettier": "@stackbit/prettier-config"
+    "name": "sourcebit-transform-assets",
+    "version": "0.2.2",
+    "description": "A Sourcebit plugin for downloading assets",
+    "main": "index.js",
+    "scripts": {
+        "test": "jest",
+        "test:watch": "jest --watch",
+        "format": "prettier --write \"./**/*.{js,jsx,md,html}\""
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/stackbithq/sourcebit-transform-assets.git"
+    },
+    "keywords": [
+        "sourcebit",
+        "headless",
+        "assets",
+        "images"
+    ],
+    "author": "Stackbit",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/stackbithq/sourcebit-transform-assets/issues"
+    },
+    "homepage": "https://github.com/stackbithq/sourcebit-transform-assets#readme",
+    "devDependencies": {
+        "@stackbit/prettier-config": "^1.0.0",
+        "husky": "^4.2.0",
+        "jest": "^26.1.0",
+        "lint-staged": "^9.5.0",
+        "nock": "^13.0.2",
+        "prettier": "^1.19.1"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "lint-staged"
+        }
+    },
+    "lint-staged": {
+        "*.{js,jsx,md,html}": [
+            "npm run format",
+            "git add"
+        ]
+    },
+    "dependencies": {
+        "mkdirp": "^1.0.3"
+    },
+    "prettier": "@stackbit/prettier-config"
 }

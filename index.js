@@ -1,5 +1,6 @@
 const downloadFile = require('./lib/download-file');
 const escapeRegex = require('./lib/escape-regex');
+const { findAndReplaceInEntry } = require('./lib/find-and-replace');
 const path = require('path');
 const pkg = require('./package.json');
 
@@ -8,6 +9,9 @@ module.exports.name = pkg.name;
 module.exports.options = {
     assetPath: {
         default: 'assets'
+    },
+    maximumSearchDepth: {
+        default: 5
     },
     publicUrl: {
         default: '/assets'
@@ -28,8 +32,10 @@ module.exports.transform = async ({ data, debug, log, options }) => {
         const protocol = new URL(entry.url).protocol;
         const escapedUrl = escapeRegex(entry.url.replace(protocol, ''));
         const regExp = new RegExp(`(http:|https:){0,1}${escapedUrl}`, 'gi');
-        const assetPath = typeof options.assetPath === 'function' ? options.assetPath(null, entry) : options.assetPath;
-        const publicUrl = typeof options.publicUrl === 'function' ? options.publicUrl(null, entry, assetPath) : options.publicUrl;
+        const assetPath =
+            typeof options.assetPath === 'function' ? options.assetPath(null, entry) : path.join(options.assetPath, entry.fileName);
+        const publicUrl =
+            typeof options.publicUrl === 'function' ? options.publicUrl(null, entry, assetPath) : `${options.publicUrl}/${entry.fileName}`;
 
         result.set(regExp, { assetPath, publicUrl });
 
@@ -37,44 +43,12 @@ module.exports.transform = async ({ data, debug, log, options }) => {
     }, new Map());
     const filesToDownload = {};
     const entries = data.objects.map(entry => {
-        const replacedFields = {};
-
-        Object.keys(entry).forEach(fieldName => {
-            const value = entry[fieldName];
-            const { __metadata: meta } = value;
-            const isAsset = meta && meta.modelName === '__asset';
-
-            if (isAsset) {
-                debug('Found asset entry: %o', value);
-
-                const assetPath = typeof options.assetPath === 'function' ? options.assetPath(entry, value) : options.assetPath;
-                const publicUrl = typeof options.publicUrl === 'function' ? options.publicUrl(entry, value, assetPath) : options.publicUrl;
-
-                filesToDownload[value.url] = path.join(process.cwd(), assetPath);
-                replacedFields[fieldName] = publicUrl;
-            } else if (typeof entry[fieldName] === 'string') {
-                assets.forEach(({ assetPath, publicUrl }, expression) => {
-                    let isMatch = false;
-
-                    const newValue = entry[fieldName].replace(expression, match => {
-                        isMatch = true;
-
-                        // The URL might be protocol-relative, in which case we prepend it
-                        // with "https:".
-                        const fullUrl = match.indexOf('//') === 0 ? `https:${match}` : match;
-
-                        filesToDownload[fullUrl] = path.join(process.cwd(), assetPath);
-
-                        return publicUrl;
-                    });
-
-                    if (isMatch) {
-                        debug('Found asset in string field: %s', entry[fieldName]);
-
-                        replacedFields[fieldName] = newValue;
-                    }
-                });
-            }
+        const replacedFields = findAndReplaceInEntry({
+            assets,
+            debug,
+            entry,
+            filesToDownload,
+            options
         });
 
         return {
